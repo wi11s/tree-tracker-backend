@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_26_145640) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_151723) do
+  create_table "user_trees", force: :cascade do |t|
+    t.string "pet_name"
+    t.string "common_name"
+    t.string "scientific_name"
+    t.string "wiki"
+    t.string "image"
+    t.float "lat"
+    t.float "lng"
+    t.string "health"
+    t.string "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_trees_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -20,4 +36,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_145640) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_trees", "users"
 end
