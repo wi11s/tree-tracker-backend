@@ -36,6 +36,7 @@ class UserTreesController < ApplicationController
   # DELETE /user_trees/1
   def destroy
     @user_tree.destroy
+    render json: @user_tree
   end
 
   private

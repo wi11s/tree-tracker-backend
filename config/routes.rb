@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tree_types
   
   resources :user_trees
   resources :users
