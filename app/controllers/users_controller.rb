@@ -20,6 +20,17 @@ class UsersController < ApplicationController
         }, status: :created
     end
 
+    def index
+        users = User.all
+        render json: users
+    end
+
+    def update
+        User.find(params[:id]).update!(user_params)
+        user = User.find(params[:id])
+        render json: user
+    end
+
     private
 
     def user_params 

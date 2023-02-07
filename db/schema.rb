@@ -10,7 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_151531) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_07_200450) do
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "join_replies", force: :cascade do |t|
+    t.integer "parent_reply_id"
+    t.integer "child_reply_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id"
+    t.integer "reply_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["reply_id"], name: "index_likes_on_reply_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.string "image"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "content"
+    t.string "image"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
   create_table "tree_types", force: :cascade do |t|
     t.string "common_name"
     t.string "image"
@@ -44,5 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_151531) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "replies"
+  add_foreign_key "likes", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "replies", "posts"
+  add_foreign_key "replies", "users"
   add_foreign_key "user_trees", "users"
 end
