@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :user_trees
     has_many :posts, dependent: :destroy
+    has_many :join_types
+    has_many :tree_types, through: :join_types
 
     validates :username, :name, :email, presence: true
     validates :username, :email, uniqueness: true

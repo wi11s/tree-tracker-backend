@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_200450) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_165619) do
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_200450) do
     t.integer "child_reply_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "join_types", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "tree_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_tree_id"
+    t.index ["tree_type_id"], name: "index_join_types_on_tree_type_id"
+    t.index ["user_id"], name: "index_join_types_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -62,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_200450) do
     t.string "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "collected"
   end
 
   create_table "user_trees", force: :cascade do |t|
@@ -89,6 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_200450) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "join_types", "tree_types"
+  add_foreign_key "join_types", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "replies"
   add_foreign_key "likes", "users"

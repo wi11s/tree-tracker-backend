@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  
+  resources :join_types
+
   resources :join_replies, only: [:create]
   resources :follows, only: [:create]
   resources :likes, only: [:create, :destroy]
   resources :replies, only: [:create, :destroy]
   resources :posts, only: [:index, :create, :destroy]
 
-  resources :tree_types
+  resources :tree_types, only: [:create, :destroy]
   resources :user_trees
   resources :users
 
@@ -20,5 +21,6 @@ Rails.application.routes.draw do
   delete "/follows/:followed_id/:follower_id", to: "follows#destroy"
   get "/posts/:user_id", to: "posts#user_posts"
   get "/replies/:parent_reply_id", to: "replies#show_nested"
+  get "/tree_types", to: "tree_types#user_tree_types"
   
 end

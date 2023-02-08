@@ -5,7 +5,6 @@ class Like < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: [ :post_id, :reply_id ] }
 
-
   validates :post_id, presence: false
   validates :reply_id, presence: false
 end

@@ -1,17 +1,20 @@
 class TreeTypesController < ApplicationController
   before_action :set_tree_type, only: %i[ show update destroy ]
+  skip_before_action :authorized, only: [:index]
 
-  # GET /tree_types
-  def index
-    @tree_types = TreeType.all
-
-    render json: @tree_types
+  def user_tree_types
+    tree_types = TreeType.all
+    for tree_type in tree_types
+      if tree_type.users.include?(current_user)
+        tree_type.collected = true
+      else
+        tree_type.collected = false
+      end
+    end
+    render json: tree_types
   end
 
-  # GET /tree_types/1
-  def show
-    render json: @tree_type
-  end
+  def 
 
   # POST /tree_types
   def create
