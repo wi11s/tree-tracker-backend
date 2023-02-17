@@ -25,6 +25,17 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    def index_with_id
+        users = User.where.not(id: params[:user_id])
+        # user = User.find(params[:user_id])
+        for user in users do
+            if Request.find_by(sender_id: params[:user_id], receiver_id: user.id)
+                user.requested = true
+            end
+        end
+        render json: users
+    end
+
     def update
         User.find(params[:id]).update!(user_params)
         user = User.find(params[:id])
