@@ -15,13 +15,8 @@ class RequestsController < ApplicationController
 
   # POST /requests
   def create
-    @request = Request.new(request_params)
-
-    if @request.save
-      render json: @request, status: :created, location: @request
-    else
-      render json: @request.errors, status: :unprocessable_entity
-    end
+    request = Request.create(request_params)
+    render json: request
   end
 
   # PATCH/PUT /requests/1
