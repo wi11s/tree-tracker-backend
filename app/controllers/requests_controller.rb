@@ -33,9 +33,9 @@ class RequestsController < ApplicationController
     end
   end
 
-  # DELETE /requests/1
-  def destroy
-    @request.destroy
+  def destroy_by_both_ids
+    request = Request.find_by(sender_id: params[:sender_id], receiver_id: params[:receiver_id])
+    request.destroy
   end
 
   private
@@ -48,4 +48,5 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:sender_id, :receiver_id)
     end
+
 end

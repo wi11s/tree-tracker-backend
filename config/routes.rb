@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   get "/replies/:parent_reply_id", to: "replies#show_nested"
   get "/tree_types", to: "tree_types#user_tree_types"
   get "/users/filtered/:user_id", to: "users#index_with_id"
+  delete "/requests/:receiver_id/:sender_id", to: "requests#destroy_by_both_ids"
   
 end
