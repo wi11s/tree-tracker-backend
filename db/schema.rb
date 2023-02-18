@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_165619) do
-  create_table "follows", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+ActiveRecord::Schema[7.0].define(version: 2023_02_18_000143) do
+  create_table "friends", force: :cascade do |t|
+    t.integer "user1_id"
+    t.integer "user2_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,6 +66,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_165619) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tree_types", force: :cascade do |t|
     t.string "common_name"
     t.string "image"
@@ -98,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_165619) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "requested"
   end
 
   add_foreign_key "join_types", "tree_types"

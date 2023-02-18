@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :friends
+  resources :requests, only: [:create]
   resources :join_types
 
   resources :join_replies, only: [:create]
@@ -22,5 +24,7 @@ Rails.application.routes.draw do
   get "/posts/:user_id", to: "posts#user_posts"
   get "/replies/:parent_reply_id", to: "replies#show_nested"
   get "/tree_types", to: "tree_types#user_tree_types"
+  get "/users/filtered/:user_id", to: "users#index_with_id"
+  delete "/requests/:receiver_id/:sender_id", to: "requests#destroy_by_both_ids"
   
 end
