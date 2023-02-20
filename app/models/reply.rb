@@ -9,7 +9,7 @@ class Reply < ApplicationRecord
   has_many :child_replies, class_name: :JoinReply, foreign_key: "child_reply_id"
 
   validates :content, presence: true
-  validates :content, length: { maximum: 140 }
+  validates :content, length: { maximum: 2000 }
   validates :id, uniqueness: true
 
   def like_count
