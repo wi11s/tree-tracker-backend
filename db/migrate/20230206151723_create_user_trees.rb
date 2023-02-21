@@ -1,15 +1,15 @@
 class CreateUserTrees < ActiveRecord::Migration[7.0]
   def change
     create_table :user_trees do |t|
-      t.string :pet_name
-      t.string :common_name
-      t.string :scientific_name
-      t.string :wiki
-      t.string :image
+      t.text :pet_name
+      t.text :common_name
+      t.text :scientific_name
+      t.text :wiki
+      t.text :image
       t.float :lat
       t.float :lng
-      t.string :health
-      t.string :description
+      t.text :health
+      t.text :description
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

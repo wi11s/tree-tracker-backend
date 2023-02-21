@@ -120,10 +120,11 @@ GEM
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.2-x86_64-linux)
-      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
+      racc (~> 1.4)
+    pg (1.4.5)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -162,10 +163,6 @@ GEM
     reline (0.3.2)
       io-console (~> 0.5)
     spring (4.1.1)
-    sqlite3 (1.6.0)
-      mini_portile2 (~> 2.8.0)
-    sqlite3 (1.6.0-x86_64-linux)
-    sqlite3 (1.6.0-arm64-darwin)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -176,9 +173,9 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  x86_64-linux
   arm64-darwin-21
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.2)
@@ -186,11 +183,11 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   debug
   jwt (~> 1.5, >= 1.5.4)
+  pg
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
   spring
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
