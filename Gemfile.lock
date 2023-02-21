@@ -184,7 +184,7 @@ DEPENDENCIES
   debug
   jwt (~> 1.5, >= 1.5.4)
   pg
-  puma (~> 5.0)
+  puma
   rack-cors
   rails (~> 7.0.4)
   spring

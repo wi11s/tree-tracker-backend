@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.4"
 gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma"
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
