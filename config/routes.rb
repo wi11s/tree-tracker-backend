@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :replies, only: [:create, :destroy]
   resources :posts, only: [:index, :create, :destroy]
 
-  resources :tree_types, only: [:create, :destroy]
+  resources :tree_types, only: [:create, :destroy, :index]
   resources :user_trees
   resources :users
 
