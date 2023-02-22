@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :replies, only: [:create, :destroy]
   resources :posts, only: [:index, :create, :destroy]
 
-  resources :tree_types, only: [:create, :destroy, :index]
+  resources :tree_types, only: [:create, :destroy]
   resources :user_trees
   resources :users
 
@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   get "/tree_types", to: "tree_types#user_tree_types"
   get "/users/filtered/:user_id", to: "users#index_with_id"
   delete "/requests/:receiver_id/:sender_id", to: "requests#destroy_by_both_ids"
+  patch "/users/score/:user_id", to: "users#score_update"
   
 end

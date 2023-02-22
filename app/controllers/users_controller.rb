@@ -42,6 +42,13 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def score_update
+        user = User.find(params[:user_id])
+        new_score = user.score.to_i + params[:score].to_i
+        user.update(score: new_score)
+        render json: user
+    end
+
     private
 
     def user_params 

@@ -14,10 +14,10 @@ class TreeTypesController < ApplicationController
     render json: tree_types
   end
 
-  def index
-    tree_types = TreeType.all
-    render json: tree_types
-  end
+  # def index
+  #   tree_types = TreeType.all
+  #   render json: tree_types
+  # end
 
   # POST /tree_types
   def create
