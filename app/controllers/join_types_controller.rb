@@ -15,13 +15,17 @@ class JoinTypesController < ApplicationController
 
   # POST /join_types
   def create
-    @join_type = JoinType.new(join_type_params)
+    join_type = JoinType.create(join_type_params)
 
-    if @join_type.save
-      render json: @join_type, status: :created, location: @join_type
-    else
-      render json: @join_type.errors, status: :unprocessable_entity
+    tree_types = TreeType.all
+    for tree_type in tree_types
+      if tree_type.users.include?(current_user) || params[:tree_type_id] == tree_type.id
+        tree_type.collected = true
+      else
+        tree_type.collected = false
+      end
     end
+    render json: tree_types
   end
 
   # PATCH/PUT /join_types/1
